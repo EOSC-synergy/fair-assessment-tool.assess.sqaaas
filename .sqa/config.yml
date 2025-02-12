@@ -1,0 +1,52 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/DANS-KNAW/fair-assessment-tool:
+      branch: master
+      repo: https://github.com/DANS-KNAW/fair-assessment-tool/
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/DANS-KNAW/fair-assessment-tool git:
+        commands:
+        - /usr/bin/env sh .sqa/script.paltry-eggplant-wombat.sh
+        container: qc.acc_slimy-white-kangaroo
+  QC.Doc:
+    repos:
+      github.com/DANS-KNAW/fair-assessment-tool find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.boozy-russet-wolfhound.sh
+        container: qc.doc_cheeky-mauve-cichlid
+      github.com/DANS-KNAW/fair-assessment-tool git:
+        commands:
+        - /usr/bin/env sh .sqa/script.gamy-black-whippet.sh
+        container: qc.doc_snazzy-grey-fowl
+      github.com/DANS-KNAW/fair-assessment-tool markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.stuffy-aqua-raccoon.sh
+        container: qc.doc_pasty-black-eagle
+  QC.Lic:
+    repos:
+      github.com/DANS-KNAW/fair-assessment-tool licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.surly-bronze-koala.sh
+        container: qc.lic_hazy-sapphire-zonkey
+  QC.Met:
+    repos:
+      github.com/DANS-KNAW/fair-assessment-tool cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.sloppy-plum-termite.sh
+        container: qc.met_foggy-chocolate-dog
+  QC.Ver:
+    repos:
+      github.com/DANS-KNAW/fair-assessment-tool get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.lovely-pear-dalmatian.sh
+        container: qc.ver_cheeky-harlequin-urchin
+timeout: 5400
